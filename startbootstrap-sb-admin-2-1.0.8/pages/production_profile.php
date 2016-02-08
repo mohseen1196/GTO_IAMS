@@ -43,35 +43,10 @@ include ("../conn/conn.php");
 	<div class="row">
 		<div class="col-lg-12">
 			<h3 class="page-header"> 
-			<font color=#8A6D3B> Production Batch </font>
+			<font color=#8A6D3B> Production Profile </font>
 			</h3>
 		</div>
 	</div>
-	
-	<div class="row">
-	<div class="col-md-6 col-sm-4 col-xs-12">
-		<div class="col-md-4 col-sm-4 col-xs-12">
-			<label class="text-info">Batch Number: </label>
-		</div>
-		<div class="col-md-6 col-sm-6 col-xs-10">
-			<input type="text" placeholder="Batch Number" name="batch_no" class="form-control"/>
-		</div>
-	</div>
-	<div class="col-md-6 col-sm-4 col-xs-12">
-		<div class="col-md-4 col-sm-4 col-xs-12">
-			<label class="text-info">Production Date: </label> 
-		</div>
-		<div class="col-md-6 col-sm-4 col-xs-12">
-		<div class="input-group date">
-			<input type="text" placeholder="Production" class="form-control" id="purchaseDt">
-			<span class="input-group-addon">
-				<span class="fa fa-calendar"></span>
-			</span>
-		</div>
-		</div>
-	</div>
-	</div>
-	<br/>
 	
 	<div class="row">
 	<div class="col-md-6 col-sm-4 col-xs-12">
@@ -117,25 +92,17 @@ include ("../conn/conn.php");
 	<div class="row">
 	<div class="col-md-6 col-sm-4 col-xs-12">
 		<div class="col-md-4 col-sm-4 col-xs-12">
-			<label class="text-info">HDPE Bags Used: </label>
-		</div>
-		<div class="col-md-6 col-sm-6 col-xs-10">
-			<input type="text" placeholder="H.D.P.E Bags" name="hdpebags" class="form-control"/>
-		</div>
-	</div>
-	<div class="col-md-6 col-sm-4 col-xs-12">
-		<div class="col-md-4 col-sm-4 col-xs-12">
-			<label class="text-info">ECOMEAL: </label> 
+			<label class="text-info">Total Product: </label> 
 		</div>
 		<div class="col-md-6 col-sm-4 col-xs-12">
-			<input type="text" class="form-control" id="purchaseDt" readonly/>
+			<input type="text" class="form-control" readonly/>
 		</div>
 	</div>
 	</div>
 	<br/>
 <div class="col-md-12 col-sm-12 col-xs-12">
 	<button type="submit" class="btn btn-success btn-outline"><i class="fa fa-save"></i> Save</button> &nbsp;&nbsp;&nbsp;&nbsp;
-	<button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#myModal"><i class="fa fa-outdent"></i> Set Profile</button>
+	<button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#myModal"><i class="fa fa-outdent"></i> List Profile</button>
 	<!-- Modal -->
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
@@ -204,13 +171,6 @@ include ("../conn/conn.php");
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-<script type="text/javascript">
-$(function() {  
-    $('#purchaseDt').datetimepicker({
-		format: 'D/M/YYYY',
-		maxDate:new Date()
-	});
-});
   //DTP from: http://eonasdan.github.io/bootstrap-datetimepicker/
 </script>
 	</body>

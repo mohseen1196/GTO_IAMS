@@ -60,11 +60,11 @@ include ("../conn/conn.php");
 				<strong class="text-success">Product inwarded Successfully.</strong>
 				<br/><br/>
 				<h4 class="text-info">Please wait... <i class="fa fa-spin fa-spinner"></i></h4>
-			<!--	<script>
+				<script>
 					setTimeout(function(){
 						window.location.assign('inward_Purchase.php');
 					},2000);
-				</script> -->
+				</script>
 				<?php
 				}
 				else

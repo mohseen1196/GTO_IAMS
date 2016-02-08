@@ -45,6 +45,7 @@ include ("../conn/conn.php");
 ?>
 
 <div id="page-wrapper">
+	<form action="db_add_client.php" method="POST">
 	<div class="row">
 		<div class="col-lg-12">
 			<h3 class="page-header"> 
@@ -58,7 +59,7 @@ include ("../conn/conn.php");
 			<label class="text-info">Name: </label>
 		</div>
 		<div class="col-md-4 col-sm-12 col-xs-12">
-			<input type="text" placeholder="Name" class="form-control" required />
+			<input type="text" placeholder="Name" class="form-control" required name="txtnm" />
 		</div>
 	</div>
 	<br/>
@@ -68,7 +69,7 @@ include ("../conn/conn.php");
 			<label class="text-info">Address: </label>
 		</div>
 		<div class="col-md-4 col-sm-12 col-xs-12">
-			<textarea placeholder="Address" class="form-control" required /></textarea>
+			<textarea placeholder="Address" class="form-control" style="resize:none;" name="txtadd" required /></textarea>
 		</div>
 	</div>
 	<br/>
@@ -78,7 +79,7 @@ include ("../conn/conn.php");
 			<label class="text-info">City: </label>
 		</div>
 		<div class="col-md-4 col-sm-12 col-xs-12">
-			<input type="text" placeholder="City" class="form-control" required />
+			<input type="text" placeholder="City" class="form-control" name="txtcity" required />
 		</div>
 	</div>
 	<br/>
@@ -88,7 +89,7 @@ include ("../conn/conn.php");
 			<label class="text-info">Dist: </label>
 		</div>
 		<div class="col-md-4 col-sm-12 col-xs-12">
-			<input type="text" placeholder="District" class="form-control" required />
+			<input type="text" placeholder="District" class="form-control" name="txtdist" required />
 		</div>
 	</div>
 	<br/>
@@ -98,7 +99,7 @@ include ("../conn/conn.php");
 			<label class="text-info">Contact Person: </label>
 		</div>
 		<div class="col-md-4 col-sm-12 col-xs-12">
-			<input type="text" placeholder="Contact Person" class="form-control" required />
+			<input type="text" placeholder="Contact Person" class="form-control" name="txtcontactPerson" required />
 		</div>
 	</div>
 	<br/>
@@ -108,7 +109,7 @@ include ("../conn/conn.php");
 			<label class="text-info">Contact No: </label>
 		</div>
 		<div class="col-md-4 col-sm-12 col-xs-12">
-			<input type="text" placeholder="Contact Number" class="form-control" required />
+			<input type="text" placeholder="Contact Number" class="form-control" name="txtcntno" required />
 		</div>
 	</div>
 	<br/>
@@ -118,12 +119,13 @@ include ("../conn/conn.php");
 			<label class="text-info">VAT No: </label>
 		</div>
 		<div class="col-md-4 col-sm-12 col-xs-12">
-			<input type="text" placeholder="VAT Number" class="form-control" required />
+			<input type="text" placeholder="VAT Number" class="form-control" name="txtvat" required />
 		</div>
 	</div>
 	<br/>
 	
 	<button class="btn btn-success btn-outline"><i class="fa fa-save"></i> Save</button>
+	</form>
 <!-- Below div of closing page wrapper -->
 </div>
 		<!-- jQuery -->
@@ -141,13 +143,6 @@ include ("../conn/conn.php");
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-<script type="text/javascript">
-$(function() {  
-    $('#purchaseDt').datetimepicker({
-		format: 'D/M/YYYY',
-		maxDate:new Date()
-	});
-});
   //DTP from: http://eonasdan.github.io/bootstrap-datetimepicker/
 </script>
 	</body>

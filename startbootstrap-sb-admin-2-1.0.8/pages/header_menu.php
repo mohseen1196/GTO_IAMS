@@ -269,7 +269,7 @@
 									<a href="production_batch.php"><i class="fa fa-cubes fa-fw"></i> Add Production Batch</a>
 								</li>
 								<li>
-									<a href="#"><i class="fa fa-cube fa-fw"></i> Add Production Profile</a>
+									<a href="production_profile.php"><i class="fa fa-cube fa-fw"></i> Add Production Profile</a>
 								</li>
 							</ul>
                         </li>

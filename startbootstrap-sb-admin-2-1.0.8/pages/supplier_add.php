@@ -154,13 +154,6 @@ include ("../conn/conn.php");
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-<script type="text/javascript">
-$(function() {
-    $('#purchaseDt').datetimepicker({
-		format: 'D/M/YYYY',
-		maxDate:new Date()
-	});
-});
   //DTP from: http://eonasdan.github.io/bootstrap-datetimepicker/
 </script>
 	</body>
