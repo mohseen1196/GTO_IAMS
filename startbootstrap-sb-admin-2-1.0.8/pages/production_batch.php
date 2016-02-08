@@ -79,7 +79,7 @@ include ("../conn/conn.php");
 		<label class="text-info">Raw Organic Manure: </label>
 	</div>
 	<div class="col-md-6 col-sm-4 col-xs-12">
-		<input type="text" placeholder="R.O.M" name="rom" class="form-control" />
+		<input type="text" placeholder="R.O.M" id="rom" name="rom" onblur="calcEcoMeal()" class="form-control" />
 	</div>
 	</div>
 	
@@ -88,7 +88,7 @@ include ("../conn/conn.php");
 		<label class="text-info">Slaughter House Waste: </label>
 	</div>
 	<div class="col-md-6 col-sm-4 col-xs-12">
-		<input type="text" placeholder="S.H.W" name="shw" class="form-control" />
+		<input type="text" placeholder="S.H.W" id="shw" name="shw" onblur="calcEcoMeal()" class="form-control" />
 	</div>
 	</div>
 	</div>
@@ -100,7 +100,7 @@ include ("../conn/conn.php");
 			<label class="text-info">Filler Powder: </label>
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-10">
-			<input type="text" placeholder="Filler Powder" name="fillerpowder" class="form-control"/>
+			<input type="text" placeholder="Filler Powder" id="fp" name="fillerpowder" onblur="calcEcoMeal()" class="form-control"/>
 		</div>
 	</div>
 	<div class="col-md-6 col-sm-4 col-xs-12">
@@ -108,7 +108,7 @@ include ("../conn/conn.php");
 			<label class="text-info">Animal Waste Filler: </label> 
 		</div>
 		<div class="col-md-6 col-sm-4 col-xs-12">
-			<input type="text" placeholder="A.W.F" name="awf" class="form-control" id="purchaseDt">
+			<input type="text" placeholder="A.W.F" name="awf" id="awf" onblur="calcEcoMeal()" class="form-control" id="purchaseDt">
 		</div>
 	</div>
 	</div>
@@ -128,7 +128,7 @@ include ("../conn/conn.php");
 			<label class="text-info">ECOMEAL: </label> 
 		</div>
 		<div class="col-md-6 col-sm-4 col-xs-12">
-			<input type="text" class="form-control" id="purchaseDt" readonly/>
+			<input type="text" class="form-control" id="ecoMeal" readonly/>
 		</div>
 	</div>
 	</div>
@@ -167,6 +167,10 @@ $(function() {
 	});
 });
   //DTP from: http://eonasdan.github.io/bootstrap-datetimepicker/
+  
+  function calcEcoMeal(){
+	document.getElementById('ecoMeal').value=parseFloat(document.getElementById('rom').value)+parseFloat(document.getElementById('shw').value)+parseFloat(document.getElementById('fp').value)+parseFloat(document.getElementById('awf').value);
+  }
 </script>
 	</body>
 </html>
