@@ -33,7 +33,7 @@ include ("../conn/conn.php");
 	<div class="row">
 		<div class="col-lg-12">
 			<h3 class="page-header"> 
-			Add Supplier
+			Update Client Details
 			</h3>
 		</div>
 	</div>
@@ -41,48 +41,57 @@ include ("../conn/conn.php");
 	<div class="row">
 		<div class="col-md-10 col-sm-12 col-xs-12">
 			<?php
-				$date=$_REQUEST['txtpdate'];
-				$date=date("Y-m-d",strtotime($date));
-				$supp=$_REQUEST['txthsupp'];
-				$prod=$_REQUEST['txthprod'];
-				$bill=$_REQUEST['txtbill'];
-				$weight=$_REQUEST['txtwgt'];
-				$rate=$_REQUEST['txtrate'];
-				$VAT=$_REQUEST['txtVAT'];
-				$final=$_REQUEST['txtFA'];
-				
-			//	echo $date." -*- ".$supp." -*- ".$bill." -*- ".$weight." -*- ".$rate." -*- ".$VAT." -*- ".$final;
-				$selSuppliers="INSERT INTO `purchase_details`(`purchase_date`, `supp_id`, `prod_id`, `bill_no`, `weight`, `rate`, `vat`, `final_amount`) VALUES ('".$date."','".$supp."','".$prod."','".$bill."','".$weight."','".$rate."','".$VAT."','".$final."')";
-				$resSuppliers=mysql_query($selSuppliers);
-				echo $resSuppliers;
-				
-				$selProd="SELECT `stock_available` FROM `stock_master` WHERE `prod_id`='".$prod."'";
-				$resProd=mysql_query($selProd);
-				$rowProd=mysql_fetch_array($resProd,MYSQL_BOTH);
-				
-				
-				$newstk=floatval($rowProd['stock_available'])+floatval($weight);
-				$updtstk="UPDATE `stock_master` SET `stock_available`='".$newstk."',`stock_date`='".$date."' WHERE `prod_id`='".$prod."'";
-				$resuptdstck=mysql_query($updtstk);
-				
-				if($resSuppliers){
-				?>
-				<strong class="text-success">Product inwarded Successfully.</strong>
+				//$id=$_REQUEST['txthid'];
+				$name=$_REQUEST['editName'];
+				$add=$_REQUEST['editAdd'];
+				$city=$_REQUEST['editCity'];
+				$dist=$_REQUEST['editDist'];
+				$cPerson=$_REQUEST['editCntPr'];
+				$cNo=$_REQUEST['editCntNo'];
+				$vat=$_REQUEST['editVat'];
+			
+			$selProds="UPDATE `client_master` SET `client_name`='".$name."',`client_add`='".$add."',`client_city`='".$city."',`client_dist`='".$dist."',`client_cntpr`='".$cPerson."',`client_cntno`='".$cNo."',`client_vatno`='".$vat."' WHERE `client_name`='".$name."'";
+			$resProds=mysql_query($selProds);
+			if($resProds){
+			?>
+				<strong class="text-success">Successfully Updated Values.</strong>
 				<br/><br/>
 				<h4 class="text-info">Please wait... <i class="fa fa-spin fa-spinner"></i></h4>
-				<script>
+			<script>
 					setTimeout(function(){
-						window.location.assign('inward_Purchase.php');
+						window.location.assign('client_list.php');
 					},2000);
-				</script>
-				<?php
-				}
-				else
-				{				
-					echo "<strong class='text-danger'>Something went wrong! Please try again</strong>";
-				}
-				?>
-		<br/>
+				</script>	
+			<?php 
+			}
+			else{				
+			?>
+				<strong class="text-danger">Something went wrong! Please try again</strong>
+			<?php
+			}
+			?>
+			<?php
+			$delProds="DELETE FROM `client_master` WHERE `client_name`='".$name."'";
+			$resDel=mysql_query($delProds);
+			if($resDel){
+			?>
+			<strong class="text-danger">Record Deleted Successfully.</strong>
+				<br/><br/>
+				<h4 class="text-info">Please wait... <i class="fa fa-spin fa-spinner"></i></h4>
+			<script>
+					setTimeout(function(){
+						window.location.assign('client_list.php');
+					},2000);
+			</script>	
+			<?php 
+			}
+			else{				
+			?>
+				<strong class="text-danger">Something went wrong! Please try again</strong>
+			<?php
+			}
+			?>
+		<br>
 		</div>
 	</div>
 </div>

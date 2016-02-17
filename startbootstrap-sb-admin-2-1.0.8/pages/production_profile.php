@@ -37,7 +37,7 @@
 include ("header_menu.php");
 include ("../conn/conn.php");
 ?>
-<form action="db_insert_production_batch.php" method="post">
+<form action="db_insert_production_profile.php" method="post">
 <div id="page-wrapper">
 
 	<div class="row">
@@ -54,7 +54,7 @@ include ("../conn/conn.php");
 		<label class="text-info">Raw Organic Manure: </label>
 	</div>
 	<div class="col-md-6 col-sm-4 col-xs-12">
-		<input type="text" placeholder="R.O.M" name="rom" class="form-control" />
+		<input type="text" placeholder="R.O.M" name="rom" class="form-control" id="rom" onBlur="calcEcoMeal()" />
 	</div>
 	</div>
 	
@@ -63,7 +63,7 @@ include ("../conn/conn.php");
 		<label class="text-info">Slaughter House Waste: </label>
 	</div>
 	<div class="col-md-6 col-sm-4 col-xs-12">
-		<input type="text" placeholder="S.H.W" name="shw" class="form-control" />
+		<input type="text" placeholder="S.H.W" name="shw" class="form-control" id="shw" onBlur="calcEcoMeal()" />
 	</div>
 	</div>
 	</div>
@@ -75,7 +75,7 @@ include ("../conn/conn.php");
 			<label class="text-info">Filler Powder: </label>
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-10">
-			<input type="text" placeholder="Filler Powder" name="fillerpowder" class="form-control"/>
+			<input type="text" placeholder="Filler Powder" name="fillerpowder" class="form-control" id="fp" onBlur="calcEcoMeal()"/>
 		</div>
 	</div>
 	<div class="col-md-6 col-sm-4 col-xs-12">
@@ -83,7 +83,7 @@ include ("../conn/conn.php");
 			<label class="text-info">Animal Waste Filler: </label> 
 		</div>
 		<div class="col-md-6 col-sm-4 col-xs-12">
-			<input type="text" placeholder="A.W.F" name="awf" class="form-control" id="purchaseDt">
+			<input type="text" placeholder="A.W.F" name="awf" class="form-control" id="awf" onBlur="calcEcoMeal()">
 		</div>
 	</div>
 	</div>
@@ -95,7 +95,8 @@ include ("../conn/conn.php");
 			<label class="text-info">Total Product: </label> 
 		</div>
 		<div class="col-md-6 col-sm-4 col-xs-12">
-			<input type="text" class="form-control" readonly/>
+			<input type="text" class="form-control" id="ecoMeal" readonly />
+			<input type="hidden" id="htotal">
 		</div>
 	</div>
 	</div>
@@ -124,17 +125,18 @@ include ("../conn/conn.php");
 												</thead>
 												<tbody>
 												<?php
-													$sup="select supplier_master.supp_name,supplier_master.supp_add,supplier_master.supp_city,supplier_master.supp_cntpr,supplier_master.supp_cntno,supplier_master.supp_eMail,supplier_master.supp_vat,product_master.prod_name,product_master.prod_id,supplier_master.supp_id from supplier_master,product_master where supplier_master.prod_id=product_master.prod_id and product_master.prod_id between 1 and 4";
+													$sup="select * from production_profile_master";
 													$resProd=mysql_query($sup);
 													while($row=mysql_fetch_array($resProd))
 													{
 												?>
 													<tr align="center">
-														<td><?php echo $row['supp_name'];?></label></td>
-														<td><?php echo $row['supp_city'];?></td>
-														<td><?php echo $row['prod_name'];?></td>
+														<td><?php echo $row['profile_filler'];?></label></td>
+														<td><?php echo $row['profile_ROM'];?></td>
+														<td><?php echo $row['profile_SHW'];?></td>
+														<td><?php echo $row['profile_AWF'];?></td>
 														<td>
-														<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" onClick="setEditValue('<?php echo $row['supp_name'];?>','<?php echo $row['prod_name'];?>',<?php echo $row['supp_id'];?>,<?php echo $row['prod_id'];?>);"> Select 
+														<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" onClick="setEditValue('<?php echo $row['profile_filler'];?>','<?php echo $row['profile_ROM'];?>','<?php echo $row['profile_SHW'];?>','<?php echo $row['profile_AWF'];?>',<?php echo $row['profile_AWF'];?>);"> Select 
 														</button></td>
 													</tr>
 												<?php
@@ -170,8 +172,21 @@ include ("../conn/conn.php");
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-
-  //DTP from: http://eonasdan.github.io/bootstrap-datetimepicker/
+<script>
+function setEditValue(edtValROM, edtValSHW, edtValFP, edtValAWF, edtValHT)
+	{
+		//alert(edtValnm+" "+edtValprod);
+		document.getElementById('rom').value=edtValROM;
+		document.getElementById('shw').value=edtValSHW;
+		document.getElementById('fp').value=edtValFP;
+		document.getElementById('awf').value=edtValAWF;
+		document.getElementById('htotal').value=edtValHT;
+	}
+  function calcEcoMeal()
+  {
+	document.getElementById('ecoMeal').value=parseFloat(document.getElementById('rom').value)+parseFloat(document.getElementById('shw').value)+parseFloat(document.getElementById('fp').value)+parseFloat(document.getElementById('awf').value);
+  }
+  
 </script>
 	</body>
 </html>

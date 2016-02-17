@@ -45,23 +45,23 @@ include ("../conn/conn.php");
 				$date=date("Y-m-d",strtotime($date));
 				$supp=$_REQUEST['txthsupp'];
 				$prod=$_REQUEST['txthprod'];
-				$bill=$_REQUEST['txtbill'];
-				$weight=$_REQUEST['txtwgt'];
-				$rate=$_REQUEST['txtrate'];
-				$VAT=$_REQUEST['txtVAT'];
-				$final=$_REQUEST['txtFA'];
+				$nobags=$_REQUEST['txtnobags'];
+				$billno=$_REQUEST['txtbill'];
+				$billamt=$_REQUEST['txtbillamt'];
+				$discount=$_REQUEST['txtdisc'];
+				$net=$_REQUEST['txtnet'];
 				
 			//	echo $date." -*- ".$supp." -*- ".$bill." -*- ".$weight." -*- ".$rate." -*- ".$VAT." -*- ".$final;
-				$selSuppliers="INSERT INTO `purchase_details`(`purchase_date`, `supp_id`, `prod_id`, `bill_no`, `weight`, `rate`, `vat`, `final_amount`) VALUES ('".$date."','".$supp."','".$prod."','".$bill."','".$weight."','".$rate."','".$VAT."','".$final."')";
+				$selSuppliers="INSERT INTO `purchase_bags`(`purchase_date`, `supp_id`, `prod_id`, `no_bags`, `bill_no`, `bill_amt`, `discount`, `net_amt`) VALUES ('".$date."','".$supp."','".$prod."','".$nobags."','".$billno."','".$billamt."','".$discount."','".$net."')";
 				$resSuppliers=mysql_query($selSuppliers);
 				echo $resSuppliers;
-				
+					
 				$selProd="SELECT `stock_available` FROM `stock_master` WHERE `prod_id`='".$prod."'";
 				$resProd=mysql_query($selProd);
 				$rowProd=mysql_fetch_array($resProd,MYSQL_BOTH);
 				
 				
-				$newstk=floatval($rowProd['stock_available'])+floatval($weight);
+				$newstk=floatval($rowProd['stock_available'])+floatval($nobags);
 				$updtstk="UPDATE `stock_master` SET `stock_available`='".$newstk."',`stock_date`='".$date."' WHERE `prod_id`='".$prod."'";
 				$resuptdstck=mysql_query($updtstk);
 				
@@ -72,7 +72,7 @@ include ("../conn/conn.php");
 				<h4 class="text-info">Please wait... <i class="fa fa-spin fa-spinner"></i></h4>
 				<script>
 					setTimeout(function(){
-						window.location.assign('inward_Purchase.php');
+						window.location.assign('inward_Purchase_Bags.php');
 					},2000);
 				</script>
 				<?php

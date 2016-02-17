@@ -32,7 +32,7 @@
 						<h3>Menu</h3>
 						<a href="index.php">Home</a>
 						<a href="about.php">About us</a>
-						<a href="products.php">Products</a>
+						<!--<a href="products.php">Products</a>-->
 						<a href="contact.php" class="active">Contact</a>
 						<a href="admin/login.php">Login</a>
 					</nav>
@@ -79,7 +79,7 @@
 				</div>
 				<div class="col-md-4 address">
 					<h3>Contact info</h3>
-					<p class="cnt-p">Lorem ipsum dolor sit amet, consectetur adipisicing elit,sheets containing Lorem Ipsum passages sed do </p>
+					<p class="cnt-p">Search us in Pune. Map provided to u to the left of this content </p>
 					<p>Green Top Organics</p>
 					<p>Wanowrie, Pune</p>
 					<p>Telephone : 0231</p>
@@ -115,7 +115,7 @@
 					<ul>
 						<li><a href="index.php">Home</a></li>
 						<li><a href="about.php">About us</a></li>
-						<li><a href="products.php">Products</a></li>
+						<li><!--<a href="products.php">Products</a>--></li>
 						<li><a href="contact.php">Contact</a></li>
 					</ul>
 				</div>

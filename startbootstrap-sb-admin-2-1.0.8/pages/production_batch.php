@@ -157,17 +157,18 @@ include ("../conn/conn.php");
 												</thead>
 												<tbody>
 												<?php
-													$sup="select supplier_master.supp_name,supplier_master.supp_add,supplier_master.supp_city,supplier_master.supp_cntpr,supplier_master.supp_cntno,supplier_master.supp_eMail,supplier_master.supp_vat,product_master.prod_name,product_master.prod_id,supplier_master.supp_id from supplier_master,product_master where supplier_master.prod_id=product_master.prod_id and product_master.prod_id between 1 and 4";
+													$sup="select * from production_profile_master";
 													$resProd=mysql_query($sup);
 													while($row=mysql_fetch_array($resProd))
 													{
 												?>
 													<tr align="center">
-														<td><?php echo $row['supp_name'];?></label></td>
-														<td><?php echo $row['supp_city'];?></td>
-														<td><?php echo $row['prod_name'];?></td>
+														<td><?php echo $row['profile_filler'];?></label></td>
+														<td><?php echo $row['profile_ROM'];?></td>
+														<td><?php echo $row['profile_SHW'];?></td>
+														<td><?php echo $row['profile_AWF'];?></td>
 														<td>
-														<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" onClick="setEditValue('<?php echo $row['supp_name'];?>','<?php echo $row['prod_name'];?>',<?php echo $row['supp_id'];?>,<?php echo $row['prod_id'];?>);"> Select 
+														<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" onClick="setEditValue('<?php echo $row['profile_filler'];?>','<?php echo $row['profile_ROM'];?>','<?php echo $row['profile_SHW'];?>','<?php echo $row['profile_AWF'];?>');"> Select 
 														</button></td>
 													</tr>
 												<?php
@@ -212,8 +213,17 @@ $(function() {
 	});
 });
   //DTP from: http://eonasdan.github.io/bootstrap-datetimepicker/
-  
-  function calcEcoMeal(){
+  function setEditValue(edtValROM, edtValSHW, edtValFP,edtValAWF)
+	{
+		//alert(edtValnm+" "+edtValprod);
+		document.getElementById('rom').value=edtValROM;
+		document.getElementById('shw').value=edtValSHW;
+		document.getElementById('fp').value=edtValFP;
+		document.getElementById('awf').value=edtValAWF;
+	}
+	
+  function calcEcoMeal()
+  {
 	document.getElementById('ecoMeal').value=parseFloat(document.getElementById('rom').value)+parseFloat(document.getElementById('shw').value)+parseFloat(document.getElementById('fp').value)+parseFloat(document.getElementById('awf').value);
   }
 </script>

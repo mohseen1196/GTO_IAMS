@@ -47,6 +47,7 @@ include ("../conn/conn.php");
 ?>
 
 <div id="page-wrapper">
+<form action="db_sales_order.php" method="POST">
 	<div class="row">
 		<div class="col-lg-12">
 			<h3 class="page-header"> 
@@ -62,7 +63,7 @@ include ("../conn/conn.php");
 		</div>
 		<div class="col-md-8 col-sm-6 col-xs-10">
 			<input type="hidden"/>
-			<input type="text" placeholder="Order Number" class="form-control"/>	<br/>
+			<input type="text" placeholder="Order Number" class="form-control" name="txtorder" required />	<br/>
 		</div>
 	</div>
 	<div class="col-md-6 col-sm-4 col-xs-12">
@@ -71,7 +72,7 @@ include ("../conn/conn.php");
 		</div>
 		<div class="col-md-8 col-sm-4 col-xs-12">
 		<div class="input-group date">
-			<input type="text" placeholder="Order Date" class="form-control" id="purchaseDt">
+			<input type="text" placeholder="Order Date" class="form-control" id="purchaseDt" name="txtpdate" />
 			<span class="input-group-addon">
 				<span class="fa fa-calendar"></span>
 			</span>
@@ -87,10 +88,53 @@ include ("../conn/conn.php");
 	</div>
 	<div class="col-md-10 col-sm-4 col-xs-12">
 		<div class="input-group date"> 
-		<input type="text" placeholder="Client" class="form-control" readonly />
-			<span class="input-group-addon"">
-				<span class="fa fa-search-plus"> </span>
+		<input type="hidden" id="ClientId" name="txthclient"/>
+		<input type="text" placeholder="Client" class="form-control" id="Client" readonly />
+			<span class="input-group-addon" data-toggle="modal" data-target="#myModal">
+				<span class="fa fa-search"> </span>
 			</span>
+			<!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel">Supplier List</h4>
+                                        </div>
+                                        <div class="modal-body">
+											<table class="table table-bordered">
+												<thead>
+													<tr>
+														<th>Client Name</th>
+														<th>Client City</th>
+														<th>Select</th>
+													</tr>
+												</thead>
+												<tbody>
+												<?php
+													$sup="select * from client_master";
+													$resProd=mysql_query($sup);
+													while($row=mysql_fetch_array($resProd))
+													{
+												?>
+													<tr align="center">
+														<td><label id="lbl1"><?php echo $row['client_name'];?></label></td>
+														<td><?php echo $row['client_city'];?></td>
+														<td>
+														<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" onClick="setEditValue('<?php echo $row['client_name'];?>','<?php echo $row['client_city'];?>',<?php echo $row['client_id'];?>);"> Select 
+														</button></td>
+													</tr>
+												<?php
+													}
+												?>
+												</tbody>
+											</table>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
 		</div>
 	</div>
 	</div>
@@ -103,26 +147,28 @@ include ("../conn/conn.php");
 			<label class="text-info">Destination: </label>
 		</div>
 		<div class="col-md-8 col-sm-6 col-xs-10">
-			<input type="hidden"/>
-			<input type="text" placeholder="Destination" class="form-control" readonly />	<br/>
+			<input type="hidden" id="ClientCity"/>
+			<input type="text" placeholder="Destination" class="form-control" id="Dest" readonly />	<br/>
 		</div>
 	</div>
 	<div class="col-md-6 col-sm-4 col-xs-12">
 		<div class="col-md-4 col-sm-4 col-xs-12">
-			<label class="text-info">Quanitity: </label> 
+			<label class="text-info">Quantity: </label> 
 		</div>
 		<div class="col-md-8 col-sm-4 col-xs-12">
-			<input type="text" placeholder="Quanitiy" class="form-control" id="purchaseDt">
+			<input type="text" placeholder="Quantity" class="form-control" name="txtqty" required />
 		</div>
 	</div>
 	</div>
 	<br/>
 	<div class="col-md-12 sm-col-12 xs-col-12">
-		<button type="button" class="btn btn-primary btn-outline"> <i class="fa fa-inr"></i> New Order </button>
+		<button class="btn btn-primary btn-outline"> <i class="fa fa-inr"></i> New Order </button>
 	</div>
 <!-- Below div of closing page wrapper -->
 </div>
-	
+</form>
+</div>
+<!-- Below div of wrapper -->
  <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
@@ -150,6 +196,14 @@ $(function() {
 	});
 });
   //DTP from: http://eonasdan.github.io/bootstrap-datetimepicker/
+  function setEditValue(edtValnm, edtValdest, edtValcn)//,edtValcc)
+	{
+		//alert(edtValnm+" "+edtValprod);
+		document.getElementById('Client').value=edtValnm;
+		document.getElementById('Dest').value=edtValdest;
+		document.getElementById('ClientId').value=edtValcn;
+		//document.getElementById('ClientCity').value=edtValcc;
+	}
 </script>
 	</body>
 </html>

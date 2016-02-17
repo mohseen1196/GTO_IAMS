@@ -33,7 +33,7 @@ include ("../conn/conn.php");
 	<div class="row">
 		<div class="col-lg-12">
 			<h3 class="page-header"> 
-			Add Supplier
+			Add Order
 			</h3>
 		</div>
 	</div>
@@ -41,30 +41,16 @@ include ("../conn/conn.php");
 	<div class="row">
 		<div class="col-md-10 col-sm-12 col-xs-12">
 			<?php
+				$order=$_REQUEST['txtorder'];
 				$date=$_REQUEST['txtpdate'];
 				$date=date("Y-m-d",strtotime($date));
-				$supp=$_REQUEST['txthsupp'];
-				$prod=$_REQUEST['txthprod'];
-				$bill=$_REQUEST['txtbill'];
-				$weight=$_REQUEST['txtwgt'];
-				$rate=$_REQUEST['txtrate'];
-				$VAT=$_REQUEST['txtVAT'];
-				$final=$_REQUEST['txtFA'];
+				$client=$_REQUEST['txthclient'];
+				$Quan=$_REQUEST['txtqty'];
 				
 			//	echo $date." -*- ".$supp." -*- ".$bill." -*- ".$weight." -*- ".$rate." -*- ".$VAT." -*- ".$final;
-				$selSuppliers="INSERT INTO `purchase_details`(`purchase_date`, `supp_id`, `prod_id`, `bill_no`, `weight`, `rate`, `vat`, `final_amount`) VALUES ('".$date."','".$supp."','".$prod."','".$bill."','".$weight."','".$rate."','".$VAT."','".$final."')";
+				$selSuppliers="INSERT INTO `sales_register`(`order_no`, `order_date`, `client_id`, `order_qty`) VALUES ('".$order."','".$date."','".$client."','".$Quan."')";
 				$resSuppliers=mysql_query($selSuppliers);
 				echo $resSuppliers;
-				
-				$selProd="SELECT `stock_available` FROM `stock_master` WHERE `prod_id`='".$prod."'";
-				$resProd=mysql_query($selProd);
-				$rowProd=mysql_fetch_array($resProd,MYSQL_BOTH);
-				
-				
-				$newstk=floatval($rowProd['stock_available'])+floatval($weight);
-				$updtstk="UPDATE `stock_master` SET `stock_available`='".$newstk."',`stock_date`='".$date."' WHERE `prod_id`='".$prod."'";
-				$resuptdstck=mysql_query($updtstk);
-				
 				if($resSuppliers){
 				?>
 				<strong class="text-success">Product inwarded Successfully.</strong>
@@ -72,7 +58,7 @@ include ("../conn/conn.php");
 				<h4 class="text-info">Please wait... <i class="fa fa-spin fa-spinner"></i></h4>
 				<script>
 					setTimeout(function(){
-						window.location.assign('inward_Purchase.php');
+						window.location.assign('sales_new_order.php');
 					},2000);
 				</script>
 				<?php

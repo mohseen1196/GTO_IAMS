@@ -32,7 +32,7 @@
 						<h3>Menu</h3>
 						<a href="index.php">Home</a>
 						<a href="about.php" class="active">About us</a>
-						<a href="products.php">Products</a>
+						<!--<a href="products.php">Products</a>-->
 						<a href="contact.php">Contact</a>
 						<a href="admin/login.php">Login</a>
 					</nav>
@@ -216,7 +216,7 @@
 					<ul>
 						<li><a href="index.php">Home</a></li>
 						<li><a href="about.php">About us</a></li>
-						<li><a href="products.php">Products</a></li>
+						<li><!--<a href="products.php">Products</a>--></li>
 						<li><a href="contact.php">Contact</a></li>
 					</ul>
 				</div>

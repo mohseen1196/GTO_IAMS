@@ -227,7 +227,7 @@
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
                                 <input list="browsers" type="text" class="form-control" placeholder="Search...">
-								
+
 								<datalist id="browsers">
 								  <option value="Internet Explorer">
 								  <option value="Firefox">
@@ -244,7 +244,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="dashboard.php"><b>Dashboard</b></a>
+                            <a href="dashboard.php"><b><font color=#8A6D3B> Dashboard </font></b></a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-th-list fa-fw"></i><b> Inward Products</b><span class="fa arrow"></span></a>
@@ -314,10 +314,7 @@
                             <a href="#"><i class="glyphicon glyphicon-folder-open fa-fw"></i><b> Stock Details</b><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="blank.html"><i class="glyphicon glyphicon-home fa-fw"></i> Stock Available</a>
-                                </li>
-                                <li>
-                                    <a href="login.html"><i class="glyphicon glyphicon-usd fa-fw"></i> Opening Stock</a>
+                                    <a href="stock_available.php"><i class="fa fa-database fa-fw"></i> Stock Available</a>
                                 </li>
                             </ul>
 						</li>

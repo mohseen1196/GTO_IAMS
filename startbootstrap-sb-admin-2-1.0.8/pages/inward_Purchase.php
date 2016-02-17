@@ -49,17 +49,7 @@ include ("../conn/conn.php");
 			</h3>
 		</div>
 	</div>
-	<!--
-	<div class="row">
-		<div class="col-md-3 col-sm-4 col-xs-12">
-			<label class="text-info">Purchase Code: </label>
-		</div>
-		<div class="col-md-6 col-sm-6 col-xs-10">
-			<input type="hidden"/>
-			<input type="text" placeholder="Purchase Code" class="form-control"/>	<br/>
-		</div>
-	</div>
-	-->
+	
 	<div class="row">
 		<div class="col-md-3 col-sm-4 col-xs-12">
 		<label class="text-info">Enter Purchase Date: </label> 
@@ -74,21 +64,7 @@ include ("../conn/conn.php");
 	<br/>
 	</div>
 	</div>
-	<!--
-	<div class="row">
-		<div class="col-md-3 col-sm-4 col-xs-12">
-			<label class="text-info">Enter Lorry Number: </label>
-		</div>
 	
-		<div class="col-md-6 col-sm-6 col-xs-10">
-			<input type="hidden"/>
-			<input type="text" placeholder="Lorry Number" class="form-control" readonly />		
-		</div>
-		<div class="col-md-3 col-sm-2 col-xs-2">		
-			<button class="btn btn-sm btn-info">...</button><br/><br/>
-		</div>
-	</div>
-	-->
 	<div class="row">
 		<div class="col-md-3 col-sm-4 col-xs-12">
 			<label class="text-info">Supplier: </label>
@@ -103,7 +79,7 @@ include ("../conn/conn.php");
                             </button>
                             <!-- Modal -->
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
+                                <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -175,7 +151,7 @@ include ("../conn/conn.php");
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-10">
 			<input type="hidden"/>
-			<input type="text" placeholder="Weight (in M.T)" class="form-control" name="txtwgt" />	<br/>
+			<input type="text" placeholder="Weight (in M.T)" class="form-control" name="txtwgt" id="weight" onBlur="FA()"/>	<br/>
 		</div>
 	</div>
 	
@@ -185,7 +161,7 @@ include ("../conn/conn.php");
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-10">
 			<input type="hidden"/>
-			<input type="text" placeholder="Rate in ( I.N.R )" class="form-control" name="txtrate" />	<br/>
+			<input type="text" placeholder="Rate in ( I.N.R )" class="form-control" name="txtrate" id="rate" onBlur="FA()"/>	<br/>
 		</div>
 	</div>
 
@@ -194,7 +170,7 @@ include ("../conn/conn.php");
 			<label class="text-info">V.A.T : </label>
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-10">
-			<input type="text" class="form-control" placeholder="V.A.T" name="txtVAT" / required><br/>
+			<input type="text" class="form-control" placeholder="V.A.T" name="txtVAT" id="vat" onBlur="FA()" / required><br/>
 		</div>
 	</div>
 	
@@ -204,7 +180,7 @@ include ("../conn/conn.php");
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-10">
 			<input type="hidden"/>
-			<input type="text" placeholder="Final Amount" class="form-control" name="txtFA" />	<br/>
+			<input type="text" placeholder="Final Amount" class="form-control" name="txtFA" id="fnlamt" />	<br/>
 		</div>
 	</div>
 	<br/>
@@ -236,7 +212,7 @@ include ("../conn/conn.php");
 <script type="text/javascript">
 $(function() {  
     $('#purchaseDt').datetimepicker({
-		//format: 'D/M/YYYY',
+		format: 'D/M/YYYY',
 		maxDate:new Date()
 	});
 });
@@ -250,6 +226,10 @@ $(function() {
 		document.getElementById('ProdId').value=edtValprodid;
 	}
   //DTP from: http://eonasdan.github.io/bootstrap-datetimepicker/
-</script>
+function FA()
+	{
+	document.getElementById('fnlamt').value=parseFloat(document.getElementById('rate').value)*parseFloat(document.getElementById('weight').value)*(parseFloat(document.getElementById('vat').value)/100);
+	}
+	</script>
 	</body>
 </html>

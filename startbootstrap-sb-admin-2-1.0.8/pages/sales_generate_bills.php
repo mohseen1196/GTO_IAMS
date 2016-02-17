@@ -47,6 +47,7 @@ include ("../conn/conn.php");
 ?>
 
 <div id="page-wrapper">
+<form action="db_sales_generate_bills.php" method="POST">
 	<div class="row">
 		<div class="col-lg-12">
 			<h3 class="page-header"> 
@@ -63,10 +64,53 @@ include ("../conn/conn.php");
 		<div class="col-md-6 col-sm-6 col-xs-10">
 			<div class="input-group date">
 			<input type="hidden"/>
-			<input type="text" placeholder="Order No" class="form-control" readonly />
-			<span class="input-group-addon"">
+			<input type="text" placeholder="Order No" class="form-control" id="orderno" name="txtorder" readonly />
+			<input type="hidden" name="txthsalesid" id="SalesId">
+			<span class="input-group-addon" data-toggle="modal" data-target="#myModal">
 				<span class="fa fa-search"> </span>
 			</span>
+			<!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel">Supplier List</h4>
+                                        </div>
+                                        <div class="modal-body">
+											<table class="table table-bordered">
+												<thead>
+													<tr>
+														<th>Order No</th>
+														<th>Quantity</th>
+														<th>Select</th>
+													</tr>
+												</thead>
+												<tbody>
+												<?php
+													$sup="select * from sales_register";
+													$resProd=mysql_query($sup);
+													while($row=mysql_fetch_array($resProd))
+													{
+												?>
+													<tr align="center">
+														<td><label id="lbl1"><?php echo $row['order_no'];?></label></td>
+														<td><?php echo $row['order_qty'];?></td>
+														<td>
+														<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" onClick="setEditValue('<?php echo $row['order_no'];?>','<?php echo $row['order_qty'];?>',<?php echo $row['sales_id'];?>);"> Select 
+														</button></td>
+													</tr>
+												<?php
+													}
+												?>
+												</tbody>
+											</table>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
 			</div>
 		</div>
 	</div>
@@ -75,7 +119,7 @@ include ("../conn/conn.php");
 			<label class="text-info">Bill Number: </label> 
 		</div>
 		<div class="col-md-6 col-sm-4 col-xs-12">
-			<input type="text" placeholder="Bill No" class="form-control">
+			<input type="text" placeholder="Bill No" class="form-control" name="txtbill">
 		</div>
 	</div>
 	</div>
@@ -87,7 +131,7 @@ include ("../conn/conn.php");
 		<label class="text-info">Quantity: </label>
 	</div>
 	<div class="col-md-6 col-sm-4 col-xs-12">
-		<input type="text" placeholder="Qty" class="form-control" readonly />
+		<input type="text" placeholder="Qty" class="form-control" id="quantity" name="txtqty" readonly />
 	</div>
 	</div>
 	
@@ -96,7 +140,7 @@ include ("../conn/conn.php");
 		<label class="text-info">Bill Amount: </label>
 	</div>
 	<div class="col-md-6 col-sm-4 col-xs-12">
-		<input type="text" placeholder="Bill Amt" class="form-control" />
+		<input type="text" placeholder="Bill Amt" class="form-control" id="billamount" name="txtbillamt" onBlur="BA()" />
 	</div>
 	</div>
 	</div>
@@ -109,7 +153,7 @@ include ("../conn/conn.php");
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-10">
 			<div class="input-group date">
-			<input type="text" placeholder="Bill Date" class="form-control" id="purchaseDt">
+			<input type="text" placeholder="Bill Date" class="form-control" id="purchaseDt" name="txtbdate">
 			<span class="input-group-addon">
 				<span class="fa fa-calendar"></span>
 			</span>
@@ -121,7 +165,7 @@ include ("../conn/conn.php");
 			<label class="text-info">Discount: </label> 
 		</div>
 		<div class="col-md-6 col-sm-4 col-xs-12">
-			<input type="text" placeholder="Discount" class="form-control">
+			<input type="text" placeholder="Discount" class="form-control" id="discount" name="txtdisc" onBlur="BA()" />
 		</div>
 	</div>
 	</div>
@@ -134,7 +178,7 @@ include ("../conn/conn.php");
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-10">
 			<input type="hidden"/>
-			<input type="text" placeholder="VAT Amount" class="form-control"/>
+			<input type="text" placeholder="VAT Amount" class="form-control" id="vat" name="txtvat" onBlur="BA()"/>
 		</div>
 	</div>
 	<div class="col-md-6 col-sm-4 col-xs-12">
@@ -142,7 +186,7 @@ include ("../conn/conn.php");
 			<label class="text-info">Net Amount: </label> 
 		</div>
 		<div class="col-md-6 col-sm-4 col-xs-12">
-			<input type="text" class="form-control" placeholder="Net Amount"/>
+			<input type="text" class="form-control" placeholder="Net Amount" name="txtnet" id="netamount"/>
 		</div>
 	</div>
 	</div>
@@ -151,6 +195,8 @@ include ("../conn/conn.php");
 	<button type="submit" class="btn btn-primary btn-outline"><i class="fa fa-calculator"></i> Add Bill</button>
 </div>
 <!-- Below div of closing page wrapper -->
+</form>
+</div>
 </div>
 		<!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -178,6 +224,19 @@ $(function() {
 		maxDate:new Date()
 	});
 });
+function setEditValue(edtValno, edtValqty, edtValsalesId)//,edtValcc)
+	{
+		//alert(edtValnm+" "+edtValprod);
+		document.getElementById('orderno').value=edtValno;
+		document.getElementById('quantity').value=edtValqty;
+		document.getElementById('SalesId').value=edtValsalesId;
+		//document.getElementById('ClientCity').value=edtValcc;
+	}
+	
+	function BA()
+	{
+	document.getElementById('netamount').value=parseFloat(document.getElementById('billamount').value)-parseFloat(document.getElementById('discount').value);
+	}
   //DTP from: http://eonasdan.github.io/bootstrap-datetimepicker/
 </script>
 	</body>
