@@ -318,6 +318,17 @@
                                 </li>
                             </ul>
 						</li>
+						<li>
+                            <a href="#"><i class="glyphicon glyphicon-print fa-fw"></i><b> Reports</b><span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="reports_purchase_list.php"><i class="fa fa-shopping-cart fa-fw"></i> Purchase List</a>
+                                </li>
+                                <li>
+                                    <a href="reports_purchase_details.php"><i class="fa fa-shopping-cart fa-fw"></i> Purchase Details</a>
+                                </li>
+                            </ul>
+						</li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
