@@ -153,7 +153,7 @@ include ("../conn/conn.php");
 <script>
 function printPopUp(){
 	var content="<link rel='stylesheet' href='http://localhost/GTO_IAMS/startbootstrap-sb-admin-2-1.0.8/bower_components/bootstrap/dist/css/bootstrap.min.css'>"
-	content=content + "<center class='text-primary'><h3>Green Top Organics</h3><h5>company address</h5><h4>Stock Details</h4></center>";
+	content=content + "<center class='text-primary'><h3>Green Top Organics</h3><h5>company address</h5><h4>Stock Details</h4></center><div class='container'>";
 	content=content + $("#printDiv").html();
 	var w=window.open("");
 	$(w.document.body).html(content);
