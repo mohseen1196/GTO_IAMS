@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 18, 2016 at 05:20 PM
+-- Generation Time: Feb 18, 2016 at 06:07 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -223,18 +223,16 @@ CREATE TABLE IF NOT EXISTS `sales_register` (
   `dc_no` int(10) NOT NULL,
   `dispatch_date` date NOT NULL,
   PRIMARY KEY (`sales_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `sales_register`
 --
 
 INSERT INTO `sales_register` (`sales_id`, `order_no`, `order_date`, `client_id`, `order_qty`, `bill_no`, `bill_date`, `bill_amount`, `discount`, `vat_amount`, `net_amount`, `dc_no`, `dispatch_date`) VALUES
-(1, 102, '1970-01-01', 3, 300, 'abcd1234', '1970-01-01', 1000, 100, 5, 900, 0, '1970-01-01'),
-(2, 102, '0000-00-00', 3, 120, '', '0000-00-00', 0, 0, 0, 0, 0, '1970-01-01'),
-(3, 102, '2016-11-02', 3, 115, '', '0000-00-00', 0, 0, 0, 0, 0, '1970-01-01'),
-(4, 102, '2016-10-02', 3, 118, '', '0000-00-00', 0, 0, 0, 0, 0, '1970-01-01'),
-(5, 102, '0000-00-00', 3, 0, '', '0000-00-00', 0, 0, 0, 0, 0, '1970-01-01');
+(1, 111, '1970-01-01', 3, 10, 'A1234', '1970-01-01', 1500, 100, 5, 1400, 0, '0000-00-00'),
+(2, 123, '2016-02-02', 2, 15, 'B1234', '2016-02-02', 500, 10, 5, 490, 0, '0000-00-00'),
+(3, 201, '1970-01-01', 1, 5, 'C1234', '1970-01-01', 1000, 250, 5, 750, 0, '0000-00-00');
 
 -- --------------------------------------------------------
 

@@ -48,7 +48,7 @@ include ("../conn/conn.php");
 				$client=$_REQUEST['txthclient'];
 				
 			//	echo $date." -*- ".$supp." -*- ".$bill." -*- ".$weight." -*- ".$rate." -*- ".$VAT." -*- ".$final;
-				$selSuppliers="UPDATE `sales_register` SET `order_no`='".$order."',`client_id`='".$client."',`dc_no`='".$dc."',`dispatch_date`='".$date."' WHERE `dc_no`='".$dc."'";
+				$selSuppliers="UPDATE `sales_register` SET `dc_no`='".$dc."',`dispatch_date`='".$date."' WHERE `order_no`='".$order."'";
 				$resSuppliers=mysql_query($selSuppliers);
 				echo $resSuppliers;
 				if($resSuppliers){
