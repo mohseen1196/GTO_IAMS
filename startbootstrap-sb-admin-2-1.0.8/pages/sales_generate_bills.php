@@ -88,7 +88,7 @@ include ("../conn/conn.php");
 												</thead>
 												<tbody>
 												<?php
-													$sup="select * from sales_register";
+													$sup="SELECT * FROM `sales_register` WHERE `bill_no`=''";
 													$resProd=mysql_query($sup);
 													while($row=mysql_fetch_array($resProd))
 													{
