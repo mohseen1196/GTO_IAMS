@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 18, 2016 at 05:44 AM
+-- Generation Time: Feb 18, 2016 at 02:51 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -289,6 +289,25 @@ INSERT INTO `supplier_master` (`supp_id`, `supp_name`, `supp_add`, `supp_city`, 
 (7, 'Parag More', 'Somwar peth', 'Ajara', 'Parag', '9542353', 'parag.more@gmail.com', '4', 'P1234'),
 (8, 'Chandrakant Kharude', 'Goten galli', 'Ajara', 'Chandu', '988525', 'chandusabkabandhu@gmail.com', '5', 'C23'),
 (9, 'MK', 'xyz', 'miraj', 'mk', '234512', 'mhhjb@gmail.com', '1', 'nmb12234');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_master`
+--
+
+CREATE TABLE IF NOT EXISTS `user_master` (
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  PRIMARY KEY (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_master`
+--
+
+INSERT INTO `user_master` (`username`, `password`) VALUES
+('admin', 'admin');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
