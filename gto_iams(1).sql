@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 18, 2016 at 02:51 PM
+-- Generation Time: Feb 18, 2016 at 05:20 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `production_batch_register` (
   `A.W.F` varchar(10) NOT NULL,
   `HDPE_Bags` varchar(10) NOT NULL,
   PRIMARY KEY (`production_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `production_batch_register`
@@ -74,7 +74,9 @@ INSERT INTO `production_batch_register` (`production_id`, `batch_no`, `R.O.M`, `
 (2, 15, '1', '2', '3', '4', '5'),
 (3, 101, '5', '5', '5', '5', '5'),
 (4, 103, '10', '10', '10', '10', '10'),
-(5, 0, '10', '10', '10', '10', '');
+(5, 0, '10', '10', '10', '10', ''),
+(6, 333, '10', '10', '10', '10', '10'),
+(7, 400, '10', '10', '10', '10', '10');
 
 -- --------------------------------------------------------
 
@@ -218,18 +220,21 @@ CREATE TABLE IF NOT EXISTS `sales_register` (
   `discount` int(10) NOT NULL,
   `vat_amount` int(10) NOT NULL,
   `net_amount` int(10) NOT NULL,
+  `dc_no` int(10) NOT NULL,
+  `dispatch_date` date NOT NULL,
   PRIMARY KEY (`sales_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `sales_register`
 --
 
-INSERT INTO `sales_register` (`sales_id`, `order_no`, `order_date`, `client_id`, `order_qty`, `bill_no`, `bill_date`, `bill_amount`, `discount`, `vat_amount`, `net_amount`) VALUES
-(1, 101, '1970-01-01', 2, 300, 'abcd1234', '1970-01-01', 1000, 100, 5, 900),
-(2, 102, '0000-00-00', 3, 120, '', '0000-00-00', 0, 0, 0, 0),
-(3, 0, '2016-11-02', 1, 115, '', '0000-00-00', 0, 0, 0, 0),
-(4, 123, '2016-10-02', 1, 118, '', '0000-00-00', 0, 0, 0, 0);
+INSERT INTO `sales_register` (`sales_id`, `order_no`, `order_date`, `client_id`, `order_qty`, `bill_no`, `bill_date`, `bill_amount`, `discount`, `vat_amount`, `net_amount`, `dc_no`, `dispatch_date`) VALUES
+(1, 102, '1970-01-01', 3, 300, 'abcd1234', '1970-01-01', 1000, 100, 5, 900, 0, '1970-01-01'),
+(2, 102, '0000-00-00', 3, 120, '', '0000-00-00', 0, 0, 0, 0, 0, '1970-01-01'),
+(3, 102, '2016-11-02', 3, 115, '', '0000-00-00', 0, 0, 0, 0, 0, '1970-01-01'),
+(4, 102, '2016-10-02', 3, 118, '', '0000-00-00', 0, 0, 0, 0, 0, '1970-01-01'),
+(5, 102, '0000-00-00', 3, 0, '', '0000-00-00', 0, 0, 0, 0, 0, '1970-01-01');
 
 -- --------------------------------------------------------
 
@@ -250,12 +255,12 @@ CREATE TABLE IF NOT EXISTS `stock_master` (
 --
 
 INSERT INTO `stock_master` (`stock_id`, `prod_id`, `stock_available`, `stock_date`) VALUES
-(1, 1, 25, '1970-01-01'),
-(2, 2, 20, '1970-01-01'),
-(3, 3, 10, NULL),
-(4, 4, 10, NULL),
-(5, 5, 35, '1970-01-01'),
-(6, 101, 10, NULL);
+(1, 1, 45, '1970-01-01'),
+(2, 2, 40, '1970-01-01'),
+(3, 3, 30, '1970-01-01'),
+(4, 4, 30, '1970-01-01'),
+(5, 5, 55, '1970-01-01'),
+(6, 101, 30, '1970-01-01');
 
 -- --------------------------------------------------------
 

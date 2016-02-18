@@ -279,9 +279,9 @@
 								<li>
 									<a href="sales_new_order.php"><i class="fa fa-dropbox fa-fw"></i> New Order</a>
 								</li>
-								<!--<li>
-									<a href="sales_despatches.php"><i class="fa fa-envelope-o fa-fw"></i> Dispatches</a>
-								</li>	-->
+								<li>
+									<a href="sales_despatches.php"><i class="fa fa-road fa-fw"></i> Dispatches</a>
+								</li>
 								<li>
 									<a href="sales_generate_bills.php"><i class="fa fa-paste fa-fw"></i> Generate Bills</a>
 								</li>
