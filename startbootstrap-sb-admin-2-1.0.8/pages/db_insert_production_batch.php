@@ -56,6 +56,8 @@ include ("../conn/conn.php");
 				$fillerpowder=$_POST['fillerpowder'];
 				$awf=$_POST['awf'];
 				$hdpebags=$_POST['hdpebags'];
+				$date=$_REQUEST['txtdate'];
+				$date=date("Y-m-d",strtotime($date));
 				//echo "Batch No: ".$batch_no." rom: ".$rom." shw: ".$shw." FP: ". $fillerpowder. " awf: ".$awf." hdpebags: ".$hdpebags;
 				$prodQry="INSERT INTO `production_batch_register`(`batch_no`, `R.O.M`, `S.H.W`, `filler_powder`, `A.W.F`, `HDPE_Bags`) VALUES ('".$batch_no."','".$rom."','".$shw."','".$fillerpowder."','".$awf."','".$hdpebags."')";
 				$resQry=mysql_query($prodQry);
@@ -67,48 +69,48 @@ include ("../conn/conn.php");
 				$resProd=mysql_query($selProd);
 				$rowProd=mysql_fetch_array($resProd,MYSQL_BOTH);
 				
-				$newstk=floatval($rowProd['stock_available'])+floatval($fillerpowder);
+				$newstk=floatval($rowProd['stock_available'])-floatval($fillerpowder);
 				$updtstk="UPDATE `stock_master` SET `stock_available`='".$newstk."',`stock_date`='".$date."' WHERE `prod_id`=1";
 				$resuptdstck=mysql_query($updtstk);
 			
 			
 			//Update Query for Raw Organic Manure		
-				$selProd="SELECT `stock_available` FROM `stock_master` WHERE `prod_id`='2'";
+				$selProd="SELECT `stock_available` FROM `stock_master` WHERE `prod_id`=2";
 				$resProd=mysql_query($selProd);
 				$rowProd=mysql_fetch_array($resProd,MYSQL_BOTH);
 					
-				$newstk=floatval($rowProd['stock_available'])+floatval($rom);
-				$updtstk="UPDATE `stock_master` SET `stock_available`='".$newstk."',`stock_date`='".$date."' WHERE `prod_id`='".$prod."'";
+				$newstk=floatval($rowProd['stock_available'])-floatval($rom);
+				$updtstk="UPDATE `stock_master` SET `stock_available`='".$newstk."',`stock_date`='".$date."' WHERE `prod_id`=2";
 				$resuptdstck=mysql_query($updtstk);
 				
 					
 			//Update Query for Slaughter House Waste	
-				$selProd="SELECT `stock_available` FROM `stock_master` WHERE `prod_id`='3'";
+				$selProd="SELECT `stock_available` FROM `stock_master` WHERE `prod_id`=3";
 				$resProd=mysql_query($selProd);
 				$rowProd=mysql_fetch_array($resProd,MYSQL_BOTH);
 				
-				$newstk=floatval($rowProd['stock_available'])+floatval($shw);
-				$updtstk="UPDATE `stock_master` SET `stock_available`='".$newstk."',`stock_date`='".$date."' WHERE `prod_id`='".$prod."'";
+				$newstk=floatval($rowProd['stock_available'])-floatval($shw);
+				$updtstk="UPDATE `stock_master` SET `stock_available`='".$newstk."',`stock_date`='".$date."' WHERE `prod_id`=3";
 				$resuptdstck=mysql_query($updtstk);
 				
 				
 			//Update Query for Animal Waste Filler		
-				$selProd="SELECT `stock_available` FROM `stock_master` WHERE `prod_id`='4'";
+				$selProd="SELECT `stock_available` FROM `stock_master` WHERE `prod_id`=4";
 				$resProd=mysql_query($selProd);
 				$rowProd=mysql_fetch_array($resProd,MYSQL_BOTH);
 				
-				$newstk=floatval($rowProd['stock_available'])+floatval($awf);
-				$updtstk="UPDATE `stock_master` SET `stock_available`='".$newstk."',`stock_date`='".$date."' WHERE `prod_id`='".$prod."'";
+				$newstk=floatval($rowProd['stock_available'])-floatval($awf);
+				$updtstk="UPDATE `stock_master` SET `stock_available`='".$newstk."',`stock_date`='".$date."' WHERE `prod_id`=4";
 				$resuptdstck=mysql_query($updtstk);
 				
 				
 			//Update Query for HDPE Bags	
-				$selProd="SELECT `stock_available` FROM `stock_master` WHERE `prod_id`='5'";
+				$selProd="SELECT `stock_available` FROM `stock_master` WHERE `prod_id`=5";
 				$resProd=mysql_query($selProd);
 				$rowProd=mysql_fetch_array($resProd,MYSQL_BOTH);
 				
-				$newstk=floatval($rowProd['stock_available'])+floatval($hdpebags);
-				$updtstk="UPDATE `stock_master` SET `stock_available`='".$newstk."',`stock_date`='".$date."' WHERE `prod_id`='".$prod."'";
+				$newstk=floatval($rowProd['stock_available'])-floatval($hdpebags);
+				$updtstk="UPDATE `stock_master` SET `stock_available`='".$newstk."',`stock_date`='".$date."' WHERE `prod_id`=5";
 				$resuptdstck=mysql_query($updtstk);
 				
 				
@@ -118,7 +120,7 @@ include ("../conn/conn.php");
 				$rowProd=mysql_fetch_array($resProd,MYSQL_BOTH);
 				
 				$newstk=floatval($rowProd['stock_available'])+10;
-				$updtstk="UPDATE `stock_master` SET `stock_available`='".$newstk."',`stock_date`='".$date."' WHERE `prod_id`='".$prod."'";
+				$updtstk="UPDATE `stock_master` SET `stock_available`='".$newstk."',`stock_date`='".$date."' WHERE `prod_id`=101";
 				$resuptdstck=mysql_query($updtstk);
 				if($resQry){
 					echo "<strong class='text-success'>Production batch created successfully</strong>";
