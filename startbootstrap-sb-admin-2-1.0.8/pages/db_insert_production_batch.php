@@ -67,57 +67,57 @@ include ("../conn/conn.php");
 				$resProd=mysql_query($selProd);
 				$rowProd=mysql_fetch_array($resProd,MYSQL_BOTH);
 				
-				$newstk=floatval($rowProd['stock_available'])+floatval($weight);
+				$newstk=floatval($rowProd['stock_available'])+floatval($fillerpowder);
 				$updtstk="UPDATE `stock_master` SET `stock_available`='".$newstk."',`stock_date`='".$date."' WHERE `prod_id`=1";
 				$resuptdstck=mysql_query($updtstk);
 			
 			
 			//Update Query for Raw Organic Manure		
-				$selProd="SELECT `stock_available` FROM `stock_master` WHERE `prod_id`='".$prod."'";
+				$selProd="SELECT `stock_available` FROM `stock_master` WHERE `prod_id`='2'";
 				$resProd=mysql_query($selProd);
 				$rowProd=mysql_fetch_array($resProd,MYSQL_BOTH);
 					
-				$newstk=floatval($rowProd['stock_available'])+floatval($weight);
+				$newstk=floatval($rowProd['stock_available'])+floatval($rom);
 				$updtstk="UPDATE `stock_master` SET `stock_available`='".$newstk."',`stock_date`='".$date."' WHERE `prod_id`='".$prod."'";
 				$resuptdstck=mysql_query($updtstk);
 				
 					
 			//Update Query for Slaughter House Waste	
-				$selProd="SELECT `stock_available` FROM `stock_master` WHERE `prod_id`='".$prod."'";
+				$selProd="SELECT `stock_available` FROM `stock_master` WHERE `prod_id`='3'";
 				$resProd=mysql_query($selProd);
 				$rowProd=mysql_fetch_array($resProd,MYSQL_BOTH);
 				
-				$newstk=floatval($rowProd['stock_available'])+floatval($weight);
+				$newstk=floatval($rowProd['stock_available'])+floatval($shw);
 				$updtstk="UPDATE `stock_master` SET `stock_available`='".$newstk."',`stock_date`='".$date."' WHERE `prod_id`='".$prod."'";
 				$resuptdstck=mysql_query($updtstk);
 				
 				
 			//Update Query for Animal Waste Filler		
-				$selProd="SELECT `stock_available` FROM `stock_master` WHERE `prod_id`='".$prod."'";
+				$selProd="SELECT `stock_available` FROM `stock_master` WHERE `prod_id`='4'";
 				$resProd=mysql_query($selProd);
 				$rowProd=mysql_fetch_array($resProd,MYSQL_BOTH);
 				
-				$newstk=floatval($rowProd['stock_available'])+floatval($weight);
+				$newstk=floatval($rowProd['stock_available'])+floatval($awf);
 				$updtstk="UPDATE `stock_master` SET `stock_available`='".$newstk."',`stock_date`='".$date."' WHERE `prod_id`='".$prod."'";
 				$resuptdstck=mysql_query($updtstk);
 				
 				
 			//Update Query for HDPE Bags	
-				$selProd="SELECT `stock_available` FROM `stock_master` WHERE `prod_id`='".$prod."'";
+				$selProd="SELECT `stock_available` FROM `stock_master` WHERE `prod_id`='5'";
 				$resProd=mysql_query($selProd);
 				$rowProd=mysql_fetch_array($resProd,MYSQL_BOTH);
 				
-				$newstk=floatval($rowProd['stock_available'])+floatval($weight);
+				$newstk=floatval($rowProd['stock_available'])+floatval($hdpebags);
 				$updtstk="UPDATE `stock_master` SET `stock_available`='".$newstk."',`stock_date`='".$date."' WHERE `prod_id`='".$prod."'";
 				$resuptdstck=mysql_query($updtstk);
 				
 				
 			//Update Query for ECOMEAL	
-				$selProd="SELECT `stock_available` FROM `stock_master` WHERE `prod_id`='".$prod."'";
+				$selProd="SELECT `stock_available` FROM `stock_master` WHERE `prod_id`=101";
 				$resProd=mysql_query($selProd);
 				$rowProd=mysql_fetch_array($resProd,MYSQL_BOTH);
 				
-				$newstk=floatval($rowProd['stock_available'])+floatval($weight);
+				$newstk=floatval($rowProd['stock_available'])+10;
 				$updtstk="UPDATE `stock_master` SET `stock_available`='".$newstk."',`stock_date`='".$date."' WHERE `prod_id`='".$prod."'";
 				$resuptdstck=mysql_query($updtstk);
 				if($resQry){
