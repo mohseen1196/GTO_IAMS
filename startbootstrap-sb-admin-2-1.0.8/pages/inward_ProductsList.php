@@ -34,6 +34,7 @@ include ("../conn/conn.php");
 		<div class="col-lg-12">
 			<h3 class="page-header"> 
 			Product Details
+			<button type="button" style="float:right" class="btn btn-primary btn-sm" onclick="printPopUp()"><i class="fa fa-print"></i> Print</button>
 			</h3>
 		</div>
 	</div>
@@ -48,6 +49,7 @@ include ("../conn/conn.php");
 		</span>
 		</div>
 		<br>
+		<div id="printDiv">
 		<table class="table table-bordered">
 		<thead>
 			<tr>
@@ -86,6 +88,7 @@ include ("../conn/conn.php");
 		?>
 		</tbody>
 		</table>
+		</div>
 		</div>
 	</div>
 </div>
@@ -138,5 +141,15 @@ include ("../conn/conn.php");
 	}
 </script>
 
+<script>
+function printPopUp(){
+	var content="<link rel='stylesheet' href='http://localhost/2014/GTO_IAMS/startbootstrap-sb-admin-2-1.0.8/bower_components/bootstrap/dist/css/bootstrap.min.css'>"
+	content=content + "<center class='text-primary'><h3>Green Top Organics</h3><h5>company address</h5><h4>Product List</h4></center><div class='container'>";
+	content=content + $("#printDiv").html();
+	var w=window.open("");
+	$(w.document.body).html(content);
+	//window.print();
+}
+</script>
 </body>
 </html>
