@@ -41,13 +41,14 @@ include ("../conn/conn.php");
 		<div class="col-lg-12">
 			<h3 class="page-header text-warning">
 				Stock Available
+				<button type="button" style="float:right" class="btn btn-primary btn-sm" onclick="printPopUp()"><i class="fa fa-print"></i> Print</button>
 			</h3>
 		</div>
 	</div>
 	
 	<!--<a href="" ><i class="fa fa-user-secret"></i> DEACTIVATED CLIENTS</a>
 	<br/><br/>-->
-	
+	<div id="printDiv">
 	<table class="table table-bordered table-striped">
 		<caption><h4> Raw Material </h4></caption>
 		<thead>
@@ -125,6 +126,7 @@ include ("../conn/conn.php");
 		?>
 		</tbody>
 	</table>
+	</div>
 	</form>
 	<!-- Below div of closing page wrapper -->
 </div>
@@ -147,6 +149,14 @@ include ("../conn/conn.php");
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
+</script>
+<script>
+function printPopUp(){
+	console.log($("#printDiv"))
+	var content=$("#printDiv").html();
+	var w=window.open("");
+	$(w.document.body).html(content);
+}
 </script>
 <!--
 <script>
