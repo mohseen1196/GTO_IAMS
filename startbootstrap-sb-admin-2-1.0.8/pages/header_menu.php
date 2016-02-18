@@ -327,6 +327,12 @@
                                 <li>
                                     <a href="reports_purchase_details.php"><i class="fa fa-shopping-cart fa-fw"></i> Purchase Details</a>
                                 </li>
+                                <li>
+                                    <a href="reports_sales_list.php"><i class="fa fa-dropbox fa-fw"></i> Sales List</a>
+                                </li>
+                                <li>
+                                    <a href="reports_sales_details.php"><i class="fa fa-paste fa-fw"></i> Sales Details</a>
+                                </li>
                             </ul>
 						</li>
                     </ul>

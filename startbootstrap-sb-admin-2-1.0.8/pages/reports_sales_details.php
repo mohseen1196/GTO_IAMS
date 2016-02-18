@@ -50,75 +50,110 @@ include ("../conn/conn.php");
 	<div class="row">
 		<div class="col-lg-12">
 			<h3 class="page-header text-warning"> 
-			Purchase Details
-			<?php if(isset($_GET['suppid'])){?>
+			Sales Details
+			<?php if(isset($_POST['orderno'])){?>
 			 <button type="button" style="float:right; margin-left:10px" class="btn btn-primary btn-sm" onclick="printPopUp()"><i class="fa fa-print"></i>  Print</button> 
 			<?php } ?> 
-			<?php if(isset($_GET['suppid'])){?>
-			<a href="reports_purchase_details.php" style="float:right" class="btn btn-warning btn-sm"> <i class="fa fa-arrow-left"></i> Back</a>
+			<?php if(isset($_POST['orderno'])){?>
+			<a href="reports_sales_details.php" style="float:right" class="btn btn-warning btn-sm"> <i class="fa fa-arrow-left"></i> Back</a>
 			<?php } ?>
 			</h3>
 		</div>
 	</div>
 	<br/>
-	<?php if(!isset($_GET['suppid'])){?>
+	<?php if(!isset($_POST['orderno'])){?>
+		<form action="reports_sales_details.php" method="POST">
 	<div class="row">
-		<form action="reports_purchase_details.php" method="GET">
 			<div class="col-md-12">
 				<div class="col-md-2">
-					<label>Search Supplier</label>
+					<label>Order Number</label>
 				</div>
 				<div class="col-md-6">
 					<div class="input-group date">
-					<input type="hidden" id="suppid" name="suppid"/>
-					<input type="text" placeholder="Supplier Name" id="suppname" class="form-control" name="suppname" readonly />
+					<input type="hidden" id="orderid" name="orderid"/>
+					<input type="text" placeholder="Order Number" id="orderno" class="form-control" name="orderno" readonly />
 					<span class="input-group-addon" data-toggle="modal" data-target="#myModal">
 						<span class="fa fa-search"> </span>
 					</span>
-					
 					</div>
 				</div>
 				<div class="col-md-2">
 					<button type="submit" class="btn btn-success btn-sm">GO</a>
 				</div>
 			</div>
+	</div><br/>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="col-md-2">
+				<label>Client</label>
+			</div>
+			<div class="col-md-6">
+				<input type="text" id="clientnm" class="form-control" placeholder="Client Name" readonly />
+			</div>
+		</div>
+	</div><br/>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="col-md-2">
+				<label>Bill Number</label>
+			</div>
+			<div class="col-md-6">
+				<input type="text" id="billno" class="form-control" placeholder="Bill Number" readonly />
+			</div>
+		</div>
+	</div><br/>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="col-md-2">
+				<label>Dispatch Number</label>
+			</div>
+			<div class="col-md-6">
+				<input type="text" id="dcno" placeholder="Dispatch Number" class="form-control" readonly />
+			</div>
+		</div>
+	</div><br/>
 		</form>
-	</div>
 	<?php } ?>
 	<br/>
-	<?php if(isset($_GET['suppid'])){?>
+	<?php if(isset($_POST['orderno'])){?>
 	<div class="row">
 	<div id="printDiv">
 		<table class="table table-striped">
 			<thead>
 			<tr>
-				<th>Purchase Date</th>
-				<th>Supplier</th>
-				<th>Product</th>
-				<th>Bill No.</th>
-				<th>Weight</th>
-				<th>Rate</th>
-				<th>VAT No.</th>
-				<th>Final Amount</th>
+				<th>Order Date</th>
+				<th>Order No.</th>
+				<th>Client</th>
+				<th>Bill No</th>
+				<th>Bill Date</th>
+				<th>Order Quantity.</th>
+				<th>Discount.</th>
+				<th>VAT (%)</th>
+				<th>Net Amount</th>
+				<th>Dispatch Challan</th>
+				<th>Dispatch Date</th>
 			</tr>
 			</thead>			
 			<tbody>
 			<?php
-				$supid=$_GET['suppid'];
-				$supDets="SELECT * FROM `purchase_details`,`supplier_master`,`product_master` WHERE supplier_master.supp_id=purchase_details.supp_id and purchase_details.prod_id=product_master.prod_id and purchase_details.supp_id = $supid";
+				$supid=$_POST['orderno'];
+				$supDets="SELECT * FROM `sales_register`,`client_master` WHERE sales_register.client_id=client_master.client_id and sales_register.order_no = $supid";
 				$resProd=mysql_query($supDets);
 				while($row=mysql_fetch_array($resProd))
 				{
 			?>
 				<tr align="center">
-					<td><label id="lbl1"><?php echo $row['purchase_date'];?></label></td>
-					<td><?php echo $row['supp_name'];?></td>
-					<td><?php echo $row['prod_name'];?></td>
+					<td><label id="lbl1"><?php echo $row['order_date'];?></label></td>
+					<td><?php echo $row['order_no'];?></td>
+					<td><?php echo $row['client_name'];?></td>
 					<td><?php echo $row['bill_no'];?></td>
-					<td><?php echo $row['weight'];?></td>
-					<td><?php echo $row['rate'];?></td>
-					<td><?php echo $row['vat'];?></td>
-					<td><?php echo $row['final_amount'];?></td>
+					<td><?php echo $row['bill_date'];?></td>
+					<td><?php echo $row['order_qty'];?></td>
+					<td><?php echo $row['discount'];?></td>
+					<td><?php echo $row['vat_amount'];?></td>
+					<td><?php echo $row['net_amount'];?></td>
+					<td><?php echo $row['dc_no'];?></td>
+					<td><?php echo $row['dispatch_date'];?></td>
 				</tr>
 			<?php
 				}
@@ -146,23 +181,40 @@ include ("../conn/conn.php");
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th>Order No</th>
-							<th>Quantity</th>
+							<th>Order No.</th>
+							<th>Client</th>
+							<th>Bill No</th>
+							<th>Bill Date</th>
+							<th>Order Quantity.</th>
+							<th>Discount.</th>
+							<th>VAT (%)</th>
+							<th>Net Amount</th>
+							<th>Dispatch Challan</th>
+							<th>Dispatch Date</th>
 							<th>Select</th>
 						</tr>
 					</thead>
 					<tbody>
 					<?php
-						$sup="SELECT * FROM `supplier_master`";
+						$sup="SELECT * FROM `sales_register`,`client_master` WHERE sales_register.client_id=client_master.client_id";
+						/*  and not sales_register.bill_no='' and not sales_register.dc_no='' */
 						$resProd=mysql_query($sup);
 						while($row=mysql_fetch_array($resProd))
 						{
 					?>
 						<tr align="center">
-							<td><label id="lbl1"><?php echo $row['supp_id'];?></label></td>
-							<td><?php echo $row['supp_name'];?></td>
+							<td><label id="lbl1"><?php echo $row['order_no'];?></label></td>
+							<td><?php echo $row['client_name'];?></td>
+							<td><?php echo $row['bill_no'];?></td>
+							<td><?php echo $row['bill_date'];?></td>
+							<td><?php echo $row['order_qty'];?></td>
+							<td><?php echo $row['discount'];?></td>
+							<td><?php echo $row['vat_amount'];?></td>
+							<td><?php echo $row['net_amount'];?></td>
+							<td><?php echo $row['dc_no'];?></td>
+							<td><?php echo $row['dispatch_date'];?></td>
 							<td>
-							<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" onClick="setEditValue('<?php echo $row['supp_id'];?>','<?php echo $row['supp_name'];?>');"> Select 
+							<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" onClick="setEditValue('<?php echo $row['sales_id'];?>','<?php echo $row['order_no'];?>','<?php echo $row['client_name'];?>','<?php echo $row['bill_no'];?>','<?php echo $row['dc_no'];?>');"> Select 
 							</button></td>
 						</tr>
 					<?php
@@ -198,18 +250,21 @@ include ("../conn/conn.php");
 <script>
 function printPopUp(){
 	var content="<link rel='stylesheet' href='http://localhost/2014/GTO_IAMS/startbootstrap-sb-admin-2-1.0.8/bower_components/bootstrap/dist/css/bootstrap.min.css'>"
-	content=content + "<center class='text-primary'><h3>Green Top Organics</h3><h5>company address</h5><h4>Purchase List</h4></center><div class='container'>";
+	content=content + "<center class='text-primary'><h3>Green Top Organics</h3><h5>company address</h5><h4>Sales Details</h4></center><div class='container'>";
 	content=content + $("#printDiv").html();
 	var w=window.open("");
 	$(w.document.body).html(content);
 	//window.print();
 }
 
-function setEditValue(edtValid, edtValname)//,edtValcc)
+function setEditValue(edtOrderid, edtOrderNo,Clientnm,BillNo,dcNo)//,edtValcc)
 	{
 		//alert(edtValnm+" "+edtValprod);
-		document.getElementById('suppid').value=edtValid;
-		document.getElementById('suppname').value=edtValname;
+		document.getElementById('orderid').value=edtOrderid;
+		document.getElementById('orderno').value=edtOrderNo;
+		document.getElementById('clientnm').value=Clientnm;
+		document.getElementById('billno').value=BillNo;
+		document.getElementById('dcno').value=dcNo;
 	}
 </script>
 	</body>

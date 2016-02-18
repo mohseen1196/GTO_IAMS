@@ -228,7 +228,8 @@ function setEditValue(edtValno, edtValqty, edtValsalesId)//,edtValcc)
 	
 	function BA()
 	{
-	document.getElementById('netamount').value=parseFloat(document.getElementById('billamount').value)-parseFloat(document.getElementById('discount').value);
+		var tmpVat=(parseFloat(document.getElementById('vat').value)/100)*parseFloat(document.getElementById('billamount').value);
+		document.getElementById('netamount').value=parseFloat(document.getElementById('billamount').value)-parseFloat(document.getElementById('discount').value)+tmpVat;
 	}
   //DTP from: http://eonasdan.github.io/bootstrap-datetimepicker/
 </script>
