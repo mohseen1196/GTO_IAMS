@@ -104,8 +104,9 @@ include ("../conn/conn.php");
 			</thead>			
 			<tbody>
 			<?php
-				$sup="SELECT * FROM `purchase_details`,`supplier_master`,`product_master` WHERE supplier_master.supp_id=purchase_details.supp_id and purchase_details.prod_id=product_master.prod_id";
-				$resProd=mysql_query($sup);
+				$supid=$_GET['suppid'];
+				$supDets="SELECT * FROM `purchase_details`,`supplier_master`,`product_master` WHERE supplier_master.supp_id=purchase_details.supp_id and purchase_details.prod_id=product_master.prod_id and purchase_details.supp_id = $supid";
+				$resProd=mysql_query($supDets);
 				while($row=mysql_fetch_array($resProd))
 				{
 			?>
