@@ -55,7 +55,7 @@ include ("../conn/conn.php");
 			 <button type="button" style="float:right; margin-left:10px" class="btn btn-primary btn-sm" onclick="printPopUp()"><i class="fa fa-print"></i>  Print</button> 
 			<?php } ?> 
 			<?php if(isset($_POST['orderno'])){?>
-			<a href="reports_sales_details.php" style="float:right" class="btn btn-warning btn-sm"> <i class="fa fa-arrow-left"></i> Back</a>
+			<a href="reports_print_bill.php" style="float:right" class="btn btn-warning btn-sm"> <i class="fa fa-arrow-left"></i> Back</a>
 			<?php } ?>
 			</h3>
 		</div>
@@ -121,7 +121,7 @@ include ("../conn/conn.php");
 				<th>Order Date</th>
 				<th>Details</th>
 				<th>Quantity</th>
-				<th>Rate</th>
+				<!--<th>Rate</th>-->
 				<th>Net Amount</th>
 			</tr>
 			</thead>			
@@ -142,11 +142,11 @@ include ("../conn/conn.php");
 						<hr/>
 						<?php echo $row['vat_amount'];?>
 					</td>
-					<td><?php echo (floatVal($row['net_amount'])+floatVal($row['discount'])-(floatVal($row['vat_amount'])/100))/floatVal($row['order_qty']);?></td>
+					<!--<td><?php echo (floatVal($row['net_amount'])+floatVal($row['discount'])-(floatVal($row['vat_amount'])/100))/floatVal($row['order_qty']);?></td>-->
 					<td><?php echo $row['net_amount'];?></td>
 				</tr>
 				<tr>
-					<td colspan="4"><strong style="float:right">Total: </strong></td>
+					<td colspan="3"><strong style="float:right">Total: </strong></td>
 					<td><strong><?php echo $row['net_amount'];?></strong></td>
 				</tr>
 			</tbody>
