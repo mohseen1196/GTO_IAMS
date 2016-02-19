@@ -228,7 +228,8 @@ $(function() {
   //DTP from: http://eonasdan.github.io/bootstrap-datetimepicker/
 function FA()
 	{
-	document.getElementById('fnlamt').value=parseFloat(document.getElementById('rate').value)*parseFloat(document.getElementById('weight').value)*(parseFloat(document.getElementById('vat').value)/100);
+	var amt=parseFloat(document.getElementById('rate').value)*parseFloat(document.getElementById('weight').value);
+	document.getElementById('fnlamt').value=parseFloat(document.getElementById('rate').value)*parseFloat(document.getElementById('weight').value)+(parseFloat(document.getElementById('vat').value)/100*amt);
 	}
 	</script>
 	</body>
