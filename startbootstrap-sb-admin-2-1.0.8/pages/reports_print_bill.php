@@ -88,48 +88,73 @@ include ("../conn/conn.php");
 	<?php if(isset($_POST['orderno'])){?>
 	<div class="row">
 	<div id="printDiv">
-		<table class="table table-striped">
+		<?php
+			$supid=$_POST['orderno'];
+			$supDets="SELECT * FROM `sales_register`,`client_master` WHERE sales_register.client_id=client_master.client_id and sales_register.order_no = $supid";
+			$resProd=mysql_query($supDets);
+			while($row=mysql_fetch_array($resProd))
+			{
+		?>
+		<div class="col-md-8">
+			<table class="table table-bordered" height="150">
+				<tr>
+					<td><h3>M/s: <u><?php echo $row['client_name'];?></u><br/><u><?php echo $row['client_add'];?></u><br/><u><?php echo $row['client_city'];?></u></h3></td>
+				</tr>
+			</table>
+		</div>
+		<div class="col-md-4">
+			<table class="table table-bordered" height="150">
+				<tr>
+					<td><h3>TAX INVOICE No. <i class="text-danger"><?php echo $row['bill_no'];?></i><br/></h3>
+						Date: <strong><?php echo $row['bill_date'];?></strong>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="col-md-12">
+			<u><h4>Description of Goods: <span class="text-info">ECHOMEAL - Organic Manure</span></h4></u>
+		</div>
+		<div class="col-md-12">
+		<table class="table table-bordered">
 			<thead>
 			<tr>
 				<th>Order Date</th>
-				<th>Order No.</th>
-				<th>Client</th>
-				<th>Bill No</th>
-				<th>Bill Date</th>
-				<th>Order Quantity.</th>
-				<th>Discount.</th>
-				<th>VAT (%)</th>
+				<th>Details</th>
+				<th>Quantity</th>
+				<th>Rate</th>
 				<th>Net Amount</th>
-				<th>Dispatch Challan</th>
-				<th>Dispatch Date</th>
 			</tr>
 			</thead>			
 			<tbody>
-			<?php
-				$supid=$_POST['orderno'];
-				$supDets="SELECT * FROM `sales_register`,`client_master` WHERE sales_register.client_id=client_master.client_id and sales_register.order_no = $supid";
-				$resProd=mysql_query($supDets);
-				while($row=mysql_fetch_array($resProd))
-				{
-			?>
 				<tr align="center">
 					<td><label id="lbl1"><?php echo $row['order_date'];?></label></td>
-					<td><?php echo $row['order_no'];?></td>
-					<td><?php echo $row['client_name'];?></td>
-					<td><?php echo $row['bill_no'];?></td>
-					<td><?php echo $row['bill_date'];?></td>
-					<td><?php echo $row['order_qty'];?></td>
-					<td><?php echo $row['discount'];?></td>
-					<td><?php echo $row['vat_amount'];?></td>
+					<td>
+						&nbsp;
+						<hr/>
+						Discount:
+						<hr/>
+						VAT (%)
+					</td>
+					<td>
+						<?php echo $row['order_qty'];?>
+						<hr/>
+						<?php echo $row['discount'];?>
+						<hr/>
+						<?php echo $row['vat_amount'];?>
+					</td>
+					<td><?php echo (floatVal($row['net_amount'])+floatVal($row['discount'])-(floatVal($row['vat_amount'])/100))/floatVal($row['order_qty']);?></td>
 					<td><?php echo $row['net_amount'];?></td>
-					<td><?php echo $row['dc_no'];?></td>
-					<td><?php echo $row['dispatch_date'];?></td>
 				</tr>
-			<?php
-				}
-			?>
+				<tr>
+					<td colspan="4"><strong style="float:right">Total: </strong></td>
+					<td><strong><?php echo $row['net_amount'];?></strong></td>
+				</tr>
 			</tbody>
 		</table>
+		</div>
+		<?php
+			}
+		?>
 	</div>
 	</div>
 	<?php } ?>
