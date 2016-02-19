@@ -110,7 +110,7 @@ include ("../conn/conn.php");
 		</div>
 		<div class="col-md-6 col-sm-4 col-xs-12">
 		<div class="input-group date">
-			<input type="text" placeholder="Date" class="form-control" id="purchaseDt1" name="txtddate">
+			<input type="text" placeholder="Date" class="form-control" id="purchaseDt" name="txtddate">
 			<span class="input-group-addon">
 				<span class="fa fa-calendar"></span>
 			</span>
@@ -173,7 +173,7 @@ include ("../conn/conn.php");
 
 <script type="text/javascript">
 $(function() {  
-    $('#purchaseDt1').datetimepicker({
+    $('#purchaseDt').datetimepicker({
 		format: 'D/M/YYYY',
 		maxDate:new Date()
 	});

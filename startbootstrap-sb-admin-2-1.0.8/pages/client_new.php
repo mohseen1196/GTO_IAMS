@@ -49,7 +49,7 @@ include ("../conn/conn.php");
 	<div class="row">
 		<div class="col-lg-12">
 			<h3 class="page-header"> 
-			<font color=#8A6D3B> Client Details </font>
+			<font color=#8A6D3B>New Client</font>
 			</h3>
 		</div>
 	</div>

@@ -47,7 +47,9 @@ include ("../conn/conn.php");
 				$dc=$_REQUEST['txtdc'];
 				$client=$_REQUEST['txthclient'];
 				
-			//	echo $date." -*- ".$supp." -*- ".$bill." -*- ".$weight." -*- ".$rate." -*- ".$VAT." -*- ".$final;
+				echo $date;
+				echo $dc;
+				exit;
 				$selSuppliers="UPDATE `sales_register` SET `dc_no`='".$dc."',`dispatch_date`='".$date."' WHERE `order_no`='".$order."'";
 				$resSuppliers=mysql_query($selSuppliers);
 				echo $resSuppliers;
