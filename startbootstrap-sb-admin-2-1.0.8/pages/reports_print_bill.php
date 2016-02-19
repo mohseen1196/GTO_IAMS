@@ -50,7 +50,7 @@ include ("../conn/conn.php");
 	<div class="row">
 		<div class="col-lg-12">
 			<h3 class="page-header text-warning"> 
-			Sales Details
+			Bill Print
 			<?php if(isset($_POST['orderno'])){?>
 			 <button type="button" style="float:right; margin-left:10px" class="btn btn-primary btn-sm" onclick="printPopUp()"><i class="fa fa-print"></i>  Print</button> 
 			<?php } ?> 
@@ -62,7 +62,7 @@ include ("../conn/conn.php");
 	</div>
 	<br/>
 	<?php if(!isset($_POST['orderno'])){?>
-		<form action="reports_sales_details.php" method="POST">
+		<form action="reports_print_bill.php" method="POST">
 	<div class="row">
 			<div class="col-md-12">
 				<div class="col-md-2">
@@ -81,36 +81,6 @@ include ("../conn/conn.php");
 					<button type="submit" class="btn btn-success btn-sm">GO</a>
 				</div>
 			</div>
-	</div><br/>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="col-md-2">
-				<label>Client</label>
-			</div>
-			<div class="col-md-6">
-				<input type="text" id="clientnm" class="form-control" placeholder="Client Name" readonly />
-			</div>
-		</div>
-	</div><br/>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="col-md-2">
-				<label>Bill Number</label>
-			</div>
-			<div class="col-md-6">
-				<input type="text" id="billno" class="form-control" placeholder="Bill Number" readonly />
-			</div>
-		</div>
-	</div><br/>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="col-md-2">
-				<label>Dispatch Number</label>
-			</div>
-			<div class="col-md-6">
-				<input type="text" id="dcno" placeholder="Dispatch Number" class="form-control" readonly />
-			</div>
-		</div>
 	</div><br/>
 		</form>
 	<?php } ?>
@@ -175,7 +145,7 @@ include ("../conn/conn.php");
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">Supplier List</h4>
+				<h4 class="modal-title" id="myModalLabel">Order Details</h4>
 			</div>
 			<div class="modal-body">
 				<table class="table table-bordered">
@@ -197,7 +167,6 @@ include ("../conn/conn.php");
 					<tbody>
 					<?php
 						$sup="SELECT * FROM `sales_register`,`client_master` WHERE sales_register.client_id=client_master.client_id and not sales_register.bill_no='' and not sales_register.dc_no=''";
-						 
 						$resProd=mysql_query($sup);
 						while($row=mysql_fetch_array($resProd))
 						{
@@ -250,7 +219,7 @@ include ("../conn/conn.php");
 <script>
 function printPopUp(){
 	var content="<link rel='stylesheet' href='http://localhost/2014/GTO_IAMS/startbootstrap-sb-admin-2-1.0.8/bower_components/bootstrap/dist/css/bootstrap.min.css'>"
-	content=content + "<center class='text-primary'><h3>Green Top Organics</h3><h5>company address</h5><h4>Sales Details</h4></center><div class='container'>";
+	content=content + "<center class='text-primary'><h3>Green Top Organics</h3><h5>company address</h5><h4>Bill</h4></center><div class='container'>";
 	content=content + $("#printDiv").html();
 	var w=window.open("");
 	$(w.document.body).html(content);

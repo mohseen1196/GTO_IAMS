@@ -43,14 +43,15 @@ include ("../conn/conn.php");
 			<?php
 				$order=$_REQUEST['txtorder'];
 				$date=$_REQUEST['txtddate'];
-				$date=date("Y-m-d",strtotime($date));
+				//echo $dcdate . " -*- ";
+				//$chngDCdate=date("Y-m-d",strtotime($dcdate));
 				$dc=$_REQUEST['txtdc'];
 				$client=$_REQUEST['txthclient'];
 				
-				echo $date;
+				/* echo $chngDCdate . ' -$$- ';
 				echo $dc;
-				exit;
-				$selSuppliers="UPDATE `sales_register` SET `dc_no`='".$dc."',`dispatch_date`='".$date."' WHERE `order_no`='".$order."'";
+				exit; */
+				$selSuppliers="UPDATE `sales_register` SET `dc_no`='".$dc."',`dispatch_date`='".$date."' WHERE `order_no`=".$order;
 				$resSuppliers=mysql_query($selSuppliers);
 				echo $resSuppliers;
 				if($resSuppliers){

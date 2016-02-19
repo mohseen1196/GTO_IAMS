@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 18, 2016 at 06:07 PM
+-- Generation Time: Feb 19, 2016 at 05:09 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -135,7 +135,7 @@ INSERT INTO `product_master` (`prod_id`, `prod_name`) VALUES
 
 CREATE TABLE IF NOT EXISTS `purchase_bags` (
   `purchase_bag_id` int(10) NOT NULL AUTO_INCREMENT,
-  `purchase_date` date NOT NULL,
+  `purchase_date` varchar(20) DEFAULT NULL,
   `supp_id` int(10) NOT NULL,
   `prod_id` int(10) NOT NULL,
   `no_bags` int(100) NOT NULL,
@@ -166,7 +166,7 @@ INSERT INTO `purchase_bags` (`purchase_bag_id`, `purchase_date`, `supp_id`, `pro
 
 CREATE TABLE IF NOT EXISTS `purchase_details` (
   `purchase_id` int(10) NOT NULL AUTO_INCREMENT,
-  `purchase_date` date NOT NULL,
+  `purchase_date` varchar(20) DEFAULT NULL,
   `supp_id` int(10) NOT NULL,
   `prod_id` int(10) NOT NULL,
   `bill_no` varchar(20) NOT NULL,
@@ -211,17 +211,17 @@ INSERT INTO `purchase_details` (`purchase_id`, `purchase_date`, `supp_id`, `prod
 CREATE TABLE IF NOT EXISTS `sales_register` (
   `sales_id` int(10) NOT NULL AUTO_INCREMENT,
   `order_no` int(10) NOT NULL,
-  `order_date` date NOT NULL,
+  `order_date` varchar(20) NOT NULL,
   `client_id` int(10) NOT NULL,
   `order_qty` int(10) NOT NULL,
   `bill_no` varchar(10) NOT NULL,
-  `bill_date` date NOT NULL,
+  `bill_date` varchar(20) DEFAULT NULL,
   `bill_amount` int(10) NOT NULL,
   `discount` int(10) NOT NULL,
   `vat_amount` int(10) NOT NULL,
   `net_amount` int(10) NOT NULL,
   `dc_no` int(10) NOT NULL,
-  `dispatch_date` date NOT NULL,
+  `dispatch_date` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`sales_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
@@ -230,9 +230,9 @@ CREATE TABLE IF NOT EXISTS `sales_register` (
 --
 
 INSERT INTO `sales_register` (`sales_id`, `order_no`, `order_date`, `client_id`, `order_qty`, `bill_no`, `bill_date`, `bill_amount`, `discount`, `vat_amount`, `net_amount`, `dc_no`, `dispatch_date`) VALUES
-(1, 111, '1970-01-01', 3, 10, 'A1234', '1970-01-01', 1500, 100, 5, 1400, 0, '0000-00-00'),
-(2, 123, '2016-02-02', 2, 15, 'B1234', '2016-02-02', 500, 10, 5, 490, 0, '0000-00-00'),
-(3, 201, '1970-01-01', 1, 5, 'C1234', '1970-01-01', 1000, 250, 5, 750, 0, '0000-00-00');
+(1, 111, '1970-01-01', 3, 10, '12', '1970-01-01', 20000, 200, 0, 19800, 10, '1970-01-01'),
+(2, 123, '2016-02-02', 2, 15, 'B1234', '2016-02-02', 500, 10, 5, 490, 123456, '15/2/2016'),
+(3, 201, '1970-01-01', 1, 5, 'C1234', '1970-01-01', 1000, 250, 5, 750, 10, '2016-02-02');
 
 -- --------------------------------------------------------
 
@@ -244,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `stock_master` (
   `stock_id` int(10) NOT NULL AUTO_INCREMENT,
   `prod_id` int(10) NOT NULL,
   `stock_available` int(10) NOT NULL,
-  `stock_date` date DEFAULT NULL,
+  `stock_date` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`stock_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 

@@ -42,7 +42,7 @@ include ("../conn/conn.php");
 		<div class="col-md-10 col-sm-12 col-xs-12">
 			<?php
 				$date=$_REQUEST['txtpdate'];
-				$date=date("Y-m-d",strtotime($date));
+				//$date=date("Y-m-d",strtotime($date));
 				$supp=$_REQUEST['txthsupp'];
 				$prod=$_REQUEST['txthprod'];
 				$nobags=$_REQUEST['txtnobags'];

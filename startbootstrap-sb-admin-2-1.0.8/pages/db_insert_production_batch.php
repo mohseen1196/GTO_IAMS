@@ -57,7 +57,7 @@ include ("../conn/conn.php");
 				$awf=$_POST['awf'];
 				$hdpebags=$_POST['hdpebags'];
 				$date=$_REQUEST['txtdate'];
-				$date=date("Y-m-d",strtotime($date));
+				//$date=date("Y-m-d",strtotime($date));
 				//echo "Batch No: ".$batch_no." rom: ".$rom." shw: ".$shw." FP: ". $fillerpowder. " awf: ".$awf." hdpebags: ".$hdpebags;
 				$prodQry="INSERT INTO `production_batch_register`(`batch_no`, `R.O.M`, `S.H.W`, `filler_powder`, `A.W.F`, `HDPE_Bags`) VALUES ('".$batch_no."','".$rom."','".$shw."','".$fillerpowder."','".$awf."','".$hdpebags."')";
 				$resQry=mysql_query($prodQry);

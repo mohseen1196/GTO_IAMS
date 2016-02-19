@@ -47,13 +47,13 @@ include ("../conn/conn.php");
 				$Quan=$_REQUEST['txtqty'];
 				$billamt=$_REQUEST['txtbillamt'];
 				$date=$_REQUEST['txtbdate'];
-				$date=date("Y-m-d",strtotime($date));
+				//$date=date("Y-m-d",strtotime($date));
 				$discount=$_REQUEST['txtdisc'];
 				$vat=$_REQUEST['txtvat'];
 				$Net=$_REQUEST['txtnet'];
 				
 			//	echo $date." -*- ".$supp." -*- ".$bill." -*- ".$weight." -*- ".$rate." -*- ".$VAT." -*- ".$final;
-				$selSuppliers="UPDATE `sales_register` SET `order_no`='".$orderno."',`order_date`='".$date."',`order_qty`='".$Quan."',`bill_no`='".$bill."',`bill_date`='".$date."',`bill_amount`='".$billamt."',`discount`='".$discount."',`vat_amount`='".$vat."',`net_amount`='".$Net."' WHERE `sales_id`='".$salesid."'";
+				$selSuppliers="UPDATE `sales_register` SET `bill_no`='".$bill."',`bill_date`='".$date."',`bill_amount`='".$billamt."',`discount`='".$discount."',`vat_amount`='".$vat."',`net_amount`='".$Net."' WHERE `sales_id`='".$salesid."'";
 				$resSuppliers=mysql_query($selSuppliers);
 				echo $resSuppliers;
 				if($resSuppliers){

@@ -43,7 +43,7 @@ include ("../conn/conn.php");
 			<?php
 				$order=$_REQUEST['txtorder'];
 				$date=$_REQUEST['txtpdate'];
-				$date=date("Y-m-d",strtotime($date));
+				//$date=date("Y-m-d",strtotime($date));
 				$client=$_REQUEST['txthclient'];
 				$Quan=$_REQUEST['txtqty'];
 				

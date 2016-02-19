@@ -333,6 +333,9 @@
                                 <li>
                                     <a href="reports_sales_details.php"><i class="fa fa-paste fa-fw"></i> Sales Details</a>
                                 </li>
+                                <li>
+                                    <a href="reports_print_bill.php"><i class="fa fa-print fa-fw"></i> Bill Print</a>
+                                </li>
                             </ul>
 						</li>
                     </ul>

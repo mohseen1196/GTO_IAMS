@@ -78,7 +78,7 @@ include ("../conn/conn.php");
 												</thead>
 												<tbody>
 												<?php
-													$sup="select * from sales_register,client_master where sales_register.client_id=client_master.client_id";
+													$sup="select * from sales_register,client_master where sales_register.client_id=client_master.client_id and dc_no=''";
 													$resProd=mysql_query($sup);
 													while($row=mysql_fetch_array($resProd))
 													{
@@ -185,9 +185,6 @@ $(function() {
 		document.getElementById('cName').value=edtValname;
 		document.getElementById('cId').value=edtValId;
 	}
-</script>
-
-  //DTP from: http://eonasdan.github.io/bootstrap-datetimepicker/
 </script>
 	</body>
 </html>
